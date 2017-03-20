@@ -21,6 +21,7 @@ for root, dirs, files in os.walk(sys.argv[1]):
     albums.append({ "last": root.split("/")[-1], "full":root})
 
 dupes={}
+checked={}
 
 for i in albums:
     temp=[]
@@ -29,7 +30,8 @@ for i in albums:
         ratio=fuzz.ratio(i["last"],j["last"])
         if ratio > 85:
             temp.append({"root": j["full"], "ratio": ratio})
-    if len(temp)>0:
+            checked[j["full"]] = true
+    if len(temp)>0 and not i["full"] in checked:
         temp.append({"root": i["full"], "ratio": 0})
         dupes[i["last"]]=temp
 
