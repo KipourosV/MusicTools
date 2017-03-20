@@ -27,7 +27,7 @@ for i in albums:
     for j in albums:
         if i["full"]==j["full"]: continue
         ratio=fuzz.ratio(i["last"],j["last"])
-        if ratio > 70:
+        if ratio > 85:
             temp.append({"root": j["full"], "ratio": ratio})
     if len(temp)>0:
         temp.append({"root": i["full"], "ratio": 0})
