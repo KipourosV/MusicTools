@@ -30,15 +30,15 @@ for i in albums:
         ratio=fuzz.ratio(i["last"],j["last"])
         if ratio > 85:
             temp.append({"root": j["full"], "ratio": ratio})
-            checked[j["full"]] = true
+            checked[j["full"]] = True
     if len(temp)>0 and not i["full"] in checked:
         temp.append({"root": i["full"], "ratio": 0})
         dupes[i["last"]]=temp
 
 print len(dupes.keys())
 for k in dupes:
-    print("Press any key to display duplicates of: \n"+k)
-    raw_input()
     for i in dupes[k]:
         subprocess.Popen(["xdg-open", i["root"]])
-    
+    print("\n\nPress any key for next batch...")
+    raw_input()
+
